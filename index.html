@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacPro</title>
+    <!-- add tailwind -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <h1 class="text-5xl text-center mt-12 "> Welcome to  <span class="font-bold text-indigo-900"> Shopping  Cart
+            </span></h1>
+
+    </header>
+
+    <main class="w-3/4 mx-auto mt-8">
+        <section class="grid grid-cols-2 gap-4">
+            <div>
+                <img src="images/mac.png" alt="">
+            </div>
+            <div>
+                <h1 class="text-4xl mb-4" >Customize your Blue 24-inch iMac with Apple M1 chip.</h1>
+                <p>Apple M1 chip with 8-core CPU with z4 performance cores and 4 efficency cores, 7-core GPU, and 16-core Neural Engine 8GB unified memory 256GB SSD storage Two Thunderbolt/ USB $ ports Magic Mouse Magic Keyboard -US English</p>
+
+                <!-- Memory -->
+                <h4 class="text-3xl mt-4">Memory</h4>
+                <button id="base-memory" class="bg-green-600 rounded px-4 py-2 text-white font-medium mt-4">8GB unified memory</button>
+                <button id="Extra-memory" class="bg-green-600 rounded px-4 py-2 text-white font-medium mt-4">16GB unified memory</button>
+
+                <!-- storage -->
+
+                <h4 class="text-3xl mt-4">Storage</h4>
+                <button id="base-storage" class="bg-green-600 rounded px-4 py-2 text-white font-medium mt-4">256GB SSD storage</button>
+                <button id="Extra1-storage" class="bg-green-600 rounded px-4 py-2 text-white font-medium mt-4">512GB SSD storage</button>
+                <button id="Extra2-storage" class="bg-green-600 rounded px-4 py-2 text-white font-medium mt-4">1TB SSD Storage</button>
+
+                <!-- delivery options -->
+                <h4 class="text-3xl mt-4" >Choose your delivery option</h4>
+
+                <button id="base-delivery" class="bg-green-600 rounded px-4 py-2 text-white font-medium mt-4">Friday,Aug 25 Free Prime Delivery</button>
+
+                <button id="early-delivery" class="bg-green-600 rounded px-4 py-2 text-white font-medium mt-4">Friday,Aug 21 Delivery charge $20</button>
+
+
+                 <!-- price table  -->
+
+                <div class="grid grid-cols-2 w-100 mt-4 gap-5 gap-x-8">
+                    <div>
+                        <h2 class="text-1xl font-bold">Best Price</h2>
+                        <h2 class="text-1xl font-bold">Extra Memory Cost</h2>
+                        <h2 class="text-1xl font-bold">Extra Storage Cost</h2>
+                        <h2 class="text-1xl font-bold">Delivery charge</h2>
+                        <hr class="font-bold">
+                        <h2 class="text-1xl font-bold">Total Price</h2>
+
+
+                    </div>
+
+                    <div>
+                        <h2 class="text-1xl  font-bold">$ <span id="bestPrice">1299</span> </h2>
+                        <h2 class="text-1xl font-bold">$<span id="memory-cost">0</span></h2>
+                        <h2 class="text-1xl font-bold">$<span id="storage-cost">0</span></h2>
+                        <h2 class="text-1xl font-bold">$<span id="delivery-cost">0</span></h2>
+                        <hr class="font-bold ">
+                        <h2 class="text-1xl font-bold">$<span id="total-cost">1299</span></h2>
+
+
+                    </div>
+
+                </div>
+
+                <div class="my-8">
+                    <h2 class="text-1xl font-bold">Add Promo code:</h2>
+                <input id="promo-input" class="border rounded text-black px-4 py-2 mt-3" type="text" placeholder="Enter pomo code">
+                <button id="promo-apply" class="bg-red-600 border rounded text-white px-4 py-2"> Apply</button>
+
+                </div>
+
+                
+                    </div>
+
+
+               
+               
+
+            </div>
+
+        </section>
+        <!-- promi section  -->
+        <section>
+            <hr>
+            <h1  class="text-5xl text-center mt-4 ">Total:$<span id="promoTotal">1299
+            </span></h1>
+        </section>
+          
+
+    </main>
+    <script>
+
+
+
+//base button case function ($0)
+        function BaseCase(item)
+        {
+            document.getElementById(item+'-cost').innerText=0;
+            calculateTotal();
+        }
+
+/////////// $180 function
+    function $180(item)
+    {
+        document.getElementById(item+'-cost').innerText=180;
+        calculateTotal();
+    }
+
+ /////// calculate total function 
+ function calculateTotal(){
+        const Best_Price=parseInt(document.getElementById('bestPrice').innerHTML);
+        const Extra_Memory_Cost=parseInt(document.getElementById('memory-cost').innerHTML);
+        const Extra_Storage_Cost=parseInt(document.getElementById('storage-cost').innerHTML);
+        const Delivery_charge=parseInt(document.getElementById('delivery-cost').innerHTML);
+        const total= Best_Price+Extra_Memory_Cost+Extra_Storage_Cost +Delivery_charge;
+        
+        document.getElementById('total-cost').innerHTML=total;
+        document.getElementById('promoTotal').innerHTML=total;
+    }
+
+
+
+
+
+// clicking the buttons what gives always 0$ ;
+
+    document.getElementById('base-memory').addEventListener('click',function(){
+        BaseCase('memory');
+        
+    })
+
+    document.getElementById('base-storage').addEventListener('click',function(){
+        BaseCase('storage');
+        
+
+    })
+
+    document.getElementById('base-delivery').addEventListener('click',function(){
+        BaseCase('delivery');
+    })
+
+
+
+   
+ //180$ buttons 
+
+    //16gb memory
+    document.getElementById('Extra-memory').addEventListener('click',function(){
+        $180('memory');
+    })
+
+    //1tb memory
+    document.getElementById('Extra2-storage').addEventListener('click',function(){
+        $180('storage');
+    })
+
+
+
+    //  512gb memory
+    document.getElementById('Extra1-storage').addEventListener('click',function(){
+        document.getElementById('storage-cost').innerText=100;
+        calculateTotal();
+    })
+
+
+    // delivery cost 
+    document.getElementById('early-delivery').addEventListener('click',function(){
+        document.getElementById('delivery-cost').innerText=20;
+        calculateTotal();
+    })
+
+
+// promocode 
+document.getElementById('promo-apply').addEventListener('click',function(){
+    const promoInput=document.getElementById('promo-input');
+    const totalInt= parseInt(document.getElementById('total-cost').innerText);
+    if(promoInput.value=='stevekaku'){
+        promoTotal.innerText=totalInt-(totalInt*20/100);
+    }
+    promoInput.value='';
+})
+
+
+ </script>
+    
+    
+</body>
+</html>
